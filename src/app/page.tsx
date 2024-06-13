@@ -41,7 +41,7 @@ const Home = () => {
 	}
 
 	return (
-		<div className='text-center'>
+		<div className='text-center p-5'>
 			<div>
 				<h1 className='text-2xl'>{siteTitle}</h1>
 			</div>
