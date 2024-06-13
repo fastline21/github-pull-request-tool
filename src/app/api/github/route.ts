@@ -23,7 +23,7 @@ interface RequestPullRequest {
 }
 
 interface Payload {
-	token: string;
+	personal_access_token: string;
 	organization: string;
 	repository: string;
 	label: string;
@@ -34,7 +34,7 @@ export const POST = async (request: NextRequest) => {
 	try {
 		const payload = await request.json();
 		const {
-			token,
+			personal_access_token: personalAccessToken,
 			organization,
 			repository,
 			label,
@@ -44,7 +44,7 @@ export const POST = async (request: NextRequest) => {
 		const axiosInstance = axios.create({
 			baseURL: process.env.GITHUB_API_BASE_URL,
 			headers: {
-				Authorization: `token ${token}`,
+				Authorization: `token ${personalAccessToken}`,
 			},
 		});
 
