@@ -55,17 +55,10 @@ export const POST = async (request: NextRequest) => {
 		let page = 1;
 
 		do {
-			console.log('page:', page);
-
-			console.log('start pulling data');
-
 			resultPullRequest = await axiosInstance.get(
 				`repos/${organization}/${repository}/pulls`,
 				{ params: { state: 'closed', per_page: maxPage, page } }
 			);
-			console.log('resultPullRequest:', resultPullRequest);
-
-			console.log('end pulling data');
 
 			allPullRequests.push(...resultPullRequest.data);
 			page++;
