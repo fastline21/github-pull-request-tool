@@ -30,6 +30,8 @@ interface Payload {
 	max_page: number;
 }
 
+export const maxDuration = 60;
+
 export const POST = async (request: NextRequest) => {
 	try {
 		const payload = await request.json();
