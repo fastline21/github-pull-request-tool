@@ -10,9 +10,9 @@ const Table = ({ data = [], dataCount = 0, title = '' }) => {
 			<h3 className='text-2xl mb-3'>{title} Pull Request</h3>
 			<div>
 				{dataCount > 0 ? (
-					<div className='bg-slate-100'>
+					<div className='bg-slate-300'>
 						<table className='table-auto'>
-							<thead className='bg-slate-300 text-neutral-700'>
+							<thead className='bg-slate-500 text-white'>
 								<tr>
 									<th className='py-3'>#</th>
 									<th className='py-3'>Title</th>
@@ -25,7 +25,7 @@ const Table = ({ data = [], dataCount = 0, title = '' }) => {
 							<tbody className='text-center align-top'>
 								{data.map(
 									(element: GithubResponse, index: Key) => (
-										<tr key={index}>
+										<tr key={index} className='odd:bg-slate-100'>
 											<td className='p-4'>
 												{Number(index) + 1}
 											</td>

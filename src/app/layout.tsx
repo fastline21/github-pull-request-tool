@@ -5,6 +5,8 @@ import './globals.css';
 
 import Provider from '@/utils/provider';
 
+import Footer from '@/components/Footer';
+
 const inter = Inter({ subsets: ['latin'] });
 
 const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE;
@@ -22,7 +24,10 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<Provider>{children}</Provider>
+				<Provider>
+					{children}
+					<Footer />
+				</Provider>
 			</body>
 		</html>
 	);
