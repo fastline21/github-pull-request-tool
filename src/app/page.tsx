@@ -63,7 +63,6 @@ const Home = () => {
 									)}
 									className='border px-5 py-4 text-md rounded-md border-slate-400 block w-full disabled:pointer-events-none'
 									placeholder='Personal Access Token'
-									id='hs-toggle-password'
 								/>
 								<button
 									type='button'
