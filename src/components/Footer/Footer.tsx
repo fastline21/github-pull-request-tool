@@ -1,15 +1,17 @@
 import Link from 'next/link';
 
+const authorURL = process.env.NEXT_PUBLIC_AUTHOR_URL;
+
 const Footer = () => {
 	const currentDate = new Date();
 	const year = currentDate.getFullYear();
 
 	return (
-		<div className='container mx-auto p-5'>
+		<footer className='mx-auto pt-5'>
 			<p className='bg-slate-100 p-5'>
 				Copyright &copy; {year === 2024 ? year : `2024 - ${year}`} by{' '}
 				<Link
-					href='https://facitech.net'
+					href={String(authorURL)}
 					target='_blank'
 					className='hover:underline'
 				>
@@ -17,7 +19,7 @@ const Footer = () => {
 				</Link>
 				. All Rights Reserved.
 			</p>
-		</div>
+		</footer>
 	);
 };
 
