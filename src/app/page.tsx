@@ -103,58 +103,66 @@ const Home = () => {
 			)}
 			{GithubMutation.data && (
 				<div className='border-t-2 pt-5'>
-					<div className='bg-slate-100'>
+					<div>
 						{GithubMutation.data.data.pr_count > 0 ? (
-							<table className='table-auto'>
-								<thead className='bg-slate-300 text-neutral-700'>
-									<tr>
-										<th className='py-3'>#</th>
-										<th className='py-3'>Title</th>
-										<th className='py-3'>Merge Date</th>
-										<th className='py-3'>URL</th>
-										<th className='py-3'>User</th>
-										<th className='py-3'>Merge Commit</th>
-									</tr>
-								</thead>
-								<tbody className='text-center align-top'>
-									{GithubMutation.data.data.pr.map(
-										(
-											element: GithubResponse,
-											index: Key
-										) => (
-											<tr key={index}>
-												<td className='p-4'>
-													{Number(index) + 1}
-												</td>
-												<td className='p-4'>
-													{element.title}
-												</td>
-												<td className='p-4'>
-													{format(
-														element.merged_at,
-														'MM/dd/yyyy hh:mm:ss aa'
-													)}
-												</td>
-												<td className='p-4'>
-													<NextLink
-														href={element.html_url}
-														target='_blank'
-														className='hover:underline'
-													>
-														{element.html_url}
-													</NextLink>
-												</td>
-												<td className='p-4'>
-													{element.login}
-												</td>
-												<td className='p-4'>
-													{element.merge_commit_sha}
-												</td>
-											</tr>
-										)
-									)}
-								</tbody>
-							</table>
+							<div className='bg-slate-100'>
+								<table className='table-auto'>
+									<thead className='bg-slate-300 text-neutral-700'>
+										<tr>
+											<th className='py-3'>#</th>
+											<th className='py-3'>Title</th>
+											<th className='py-3'>Merge Date</th>
+											<th className='py-3'>URL</th>
+											<th className='py-3'>User</th>
+											<th className='py-3'>
+												Merge Commit
+											</th>
+										</tr>
+									</thead>
+									<tbody className='text-center align-top'>
+										{GithubMutation.data.data.pr.map(
+											(
+												element: GithubResponse,
+												index: Key
+											) => (
+												<tr key={index}>
+													<td className='p-4'>
+														{Number(index) + 1}
+													</td>
+													<td className='p-4'>
+														{element.title}
+													</td>
+													<td className='p-4'>
+														{format(
+															element.merged_at,
+															'MM/dd/yyyy hh:mm:ss aa'
+														)}
+													</td>
+													<td className='p-4'>
+														<NextLink
+															href={
+																element.html_url
+															}
+															target='_blank'
+															className='hover:underline'
+														>
+															{element.html_url}
+														</NextLink>
+													</td>
+													<td className='p-4'>
+														{element.login}
+													</td>
+													<td className='p-4'>
+														{
+															element.merge_commit_sha
+														}
+													</td>
+												</tr>
+											)
+										)}
+									</tbody>
+								</table>
+							</div>
 						) : (
 							<p>No Merge Pull Request Found</p>
 						)}
