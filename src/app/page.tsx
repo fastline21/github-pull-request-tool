@@ -170,7 +170,11 @@ const Home = () => {
 					<div className='mt-5'>
 						<button
 							type='submit'
-							className={`p-2 bg-blue-500 text-white w-full text-xl rounded-md px-5 py-4 ${
+							className={`p-2 ${
+								GithubMutation.isPending
+									? 'bg-slate-300 text-slate-700'
+									: 'bg-blue-500 text-white'
+							} w-full text-xl rounded-md px-5 py-4 ${
 								GithubMutation.isPending && 'cursor-not-allowed'
 							}`}
 							disabled={GithubMutation.isPending}
