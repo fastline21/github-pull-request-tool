@@ -4,7 +4,8 @@ The goal of this tool is to provide a list of pull requests that are closed or m
 
 ## Disclaimer
 
-Any information or details of the user's input and response from Github is not stored in any database or file.
+-   Any information or details of the user's input and response from Github is not stored in any database or file.
+-   Check `repo` in the Generate Token in order to work the Personal Access Token.
 
 #### Environment Variables
 
