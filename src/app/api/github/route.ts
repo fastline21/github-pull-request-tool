@@ -16,6 +16,7 @@ interface Data {
 	merge_commit_sha: string;
 	title: string;
 	assignee: Assignee;
+	state: string;
 }
 
 interface RequestPullRequest {
@@ -57,7 +58,7 @@ export const POST = async (request: NextRequest) => {
 		do {
 			resultPullRequest = await axiosInstance.get(
 				`repos/${organization}/${repository}/pulls`,
-				{ params: { state: 'closed', per_page: maxPage, page } }
+				{ params: { state: 'all', per_page: maxPage, page } }
 			);
 
 			allPullRequests.push(...resultPullRequest.data);
@@ -75,6 +76,7 @@ export const POST = async (request: NextRequest) => {
 					merge_commit_sha,
 					title,
 					assignee,
+					state,
 				} = element;
 
 				const { login } = assignee || { login: null };
@@ -85,6 +87,7 @@ export const POST = async (request: NextRequest) => {
 					merged_at,
 					merge_commit_sha,
 					login,
+					state,
 				};
 			})
 			.sort((a, b) => {
@@ -94,13 +97,29 @@ export const POST = async (request: NextRequest) => {
 				);
 			});
 
+		const openPRs = filterData.filter(
+			(element: { state: string }) => element.state === 'open'
+		);
+
+		const closedPRs = filterData.filter(
+			(element: { state: string; merged_at: string }) =>
+				element.state === 'closed' && !!element.merged_at
+		);
+
 		return NextResponse.json(
 			{
 				data: {
 					organization,
 					repository,
-					pr: filterData,
-					pr_count: filterData.length,
+					pr: {
+						open_prs: openPRs,
+						closed_prs: closedPRs,
+					},
+					pr_count: {
+						open_prs: openPRs.length,
+						closed_prs: closedPRs.length,
+					},
+					total_pr_count: filterData.length,
 					total_page: page,
 				},
 				status: StatusCodes.OK,
