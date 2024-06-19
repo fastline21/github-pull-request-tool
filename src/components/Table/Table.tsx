@@ -11,7 +11,7 @@ const Table = ({ data = [], dataCount = 0, title = '' }) => {
 			<div>
 				{dataCount > 0 ? (
 					<div className='bg-slate-300'>
-						<table className='table-auto'>
+						<table className='table-auto w-full'>
 							<thead className='bg-slate-500 text-white'>
 								<tr>
 									<th className='py-3'>#</th>
@@ -25,7 +25,10 @@ const Table = ({ data = [], dataCount = 0, title = '' }) => {
 							<tbody className='text-center align-top'>
 								{data.map(
 									(element: GithubResponse, index: Key) => (
-										<tr key={index} className='odd:bg-slate-100'>
+										<tr
+											key={index}
+											className='odd:bg-slate-100'
+										>
 											<td className='p-4'>
 												{Number(index) + 1}
 											</td>
@@ -33,10 +36,15 @@ const Table = ({ data = [], dataCount = 0, title = '' }) => {
 												{element.title}
 											</td>
 											<td className='p-4'>
-												{format(
-													element.merged_at,
-													'MM/dd/yyyy hh:mm:ss aa'
-												)}
+												{element.merged_at
+													? `${format(
+															element.merged_at,
+															'MM/dd/yyyy'
+													  )}\n${format(
+															element.merged_at,
+															'hh:mm:ss aa'
+													  )}`
+													: 'N/A'}
 											</td>
 											<td className='p-4'>
 												<Link

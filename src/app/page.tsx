@@ -62,8 +62,13 @@ const Home = () => {
 												'Personal Access Token is required',
 										}
 									)}
-									className='border px-5 py-4 text-md rounded-md border-slate-400 block w-full disabled:pointer-events-none'
+									className={`border px-5 py-4 text-md rounded-md border-slate-400 block w-full disabled:pointer-events-none ${
+										GithubMutation.isPending
+											? 'cursor-not-allowed'
+											: ''
+									}`}
 									placeholder='Personal Access Token'
+									disabled={GithubMutation.isPending}
 								/>
 								<button
 									type='button'
@@ -71,6 +76,7 @@ const Home = () => {
 										isSensitiveContent ? ' active' : ''
 									}`}
 									onClick={handleSensitiveContent}
+									disabled={GithubMutation.isPending}
 								>
 									<svg
 										className='flex-shrink-0 size-3.5 text-gray-400 dark:text-neutral-600'
@@ -144,8 +150,13 @@ const Home = () => {
 							<input
 								type='text'
 								{...GithubForm.register('organization')}
-								className='border px-5 py-4 text-md rounded-md border-slate-400 block w-full'
+								className={`border px-5 py-4 text-md rounded-md border-slate-400 block w-full ${
+									GithubMutation.isPending
+										? 'cursor-not-allowed'
+										: ''
+								}`}
 								placeholder='Organization'
+								disabled={GithubMutation.isPending}
 							/>
 						</div>
 						<div className='mt-5'>
@@ -154,16 +165,26 @@ const Home = () => {
 								{...GithubForm.register('repository', {
 									required: 'Repository is required',
 								})}
-								className='border px-5 py-4 text-md rounded-md border-slate-400 block w-full'
+								className={`border px-5 py-4 text-md rounded-md border-slate-400 block w-full ${
+									GithubMutation.isPending
+										? 'cursor-not-allowed'
+										: ''
+								}`}
 								placeholder='Repository'
+								disabled={GithubMutation.isPending}
 							/>
 						</div>
 						<div className='mt-5'>
 							<input
 								type='text'
 								{...GithubForm.register('label')}
-								className='border px-5 py-4 text-md rounded-md border-slate-400 block w-full'
+								className={`border px-5 py-4 text-md rounded-md border-slate-400 block w-full ${
+									GithubMutation.isPending
+										? 'cursor-not-allowed'
+										: ''
+								}`}
 								placeholder='Label'
+								disabled={GithubMutation.isPending}
 							/>
 						</div>
 					</div>
@@ -174,8 +195,10 @@ const Home = () => {
 								GithubMutation.isPending
 									? 'bg-slate-300 text-slate-700'
 									: 'bg-blue-500 text-white'
-							} w-full text-xl rounded-md px-5 py-4 ${
-								GithubMutation.isPending && 'cursor-not-allowed'
+							} w-full text-xl rounded-md ${
+								GithubMutation.isPending
+									? 'cursor-not-allowed'
+									: ''
 							}`}
 							disabled={GithubMutation.isPending}
 						>
